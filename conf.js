@@ -12,7 +12,7 @@ exports.config = {
     //seleniumServerJar: "node_modules/protractor/node_modules/webdriver-manager/selenium/selenium-server-standalone-3.4.0.jar",
     directConnect: true,
 
-    specs: ['specs/loginSuccessfullySpec.js'],
+    specs: ['specs/loginFailedSpec.js'],
     baseUrl: 'https://mail.ru',
     framework: 'jasmine',
 
@@ -28,7 +28,7 @@ exports.config = {
     capabilities: {
         browserName: 'chrome',
         shardTestFiles: true,
-        maxInstances: 2,
+        maxInstances: 1,
         chromeOptions: {
             args: [
                 // disable chrome's wakiness

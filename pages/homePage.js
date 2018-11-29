@@ -11,6 +11,7 @@ class HomePage extends BasePage {
         //todo insert mailbox dropdown locator
         this.mailBoxPasswordInput = element(by.id('mailbox:password'));
         this.mailBoxSubmitButton = element(by.id('mailbox:submit'));
+        this.mailBoxErrorMessageContainer = element(by.id('mailbox:error'));
     }
 
     async enterLogin(login) {
@@ -27,5 +28,11 @@ class HomePage extends BasePage {
         await browser.wait(this.isClickable(this.mailBoxSubmitButton), this.timeout.xxl, "Submit button is not clickable");
         return this.mailBoxSubmitButton.click();
     }
+
+    async mailBoxErrorMessageContainerIsVisible() {
+        await browser.wait(this.isVisible(this.mailBoxErrorMessageContainer), this.timeout.xxl, "Error Message Container is not visible");
+        return this.mailBoxErrorMessageContainer.isVisible;
+    }
+
 }
 export default new HomePage();

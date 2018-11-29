@@ -16,4 +16,14 @@ describe('try to login with incorrect credentials', () => {
         await loginFailedSteps.tryToLoginIncorrectData(login, password);
         expect(await homePage.mailBoxErrorMessageContainer.getText()).toContain(messageData.errorMessageInvalidDataLoginForm);
     });
+    it('should display error message when try to login with no password', async() => {
+        let login = userData.user.login;
+        await loginFailedSteps.tryToLoginIncorrectData(login,'');
+        expect(await homePage.mailBoxErrorMessageContainer.getText()).toContain(messageData.errorMessageEmptyPasswordLoginForm);
+    });
+    it('should display error message when try to login with no login', async() => {
+        let password = userData.user.password;
+        await loginFailedSteps.tryToLoginIncorrectData('',password);
+        expect(await homePage.mailBoxErrorMessageContainer.getText()).toContain(messageData.errorMessageEmptyLoginLoginForm);
+    });
 });

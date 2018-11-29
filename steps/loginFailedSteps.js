@@ -1,5 +1,6 @@
 import homePage from '../pages/homePage';
 
+
 class LoginFailedSteps {
     async tryToLoginIncorrectData(login,password) {
         browser.get(homePage.url);
@@ -8,5 +9,6 @@ class LoginFailedSteps {
         await homePage.clickSubmitButton();
         await homePage.mailBoxErrorMessageContainerIsVisible();
     }
+
 }
 export default new LoginFailedSteps();

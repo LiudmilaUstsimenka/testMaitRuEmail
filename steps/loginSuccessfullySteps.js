@@ -7,7 +7,10 @@ class LoginSuccessfullySteps {
         browser.get(homePage.url);
         await homePage.enterLogin(userData.user.login);
         await homePage.enterPassword(userData.user.password);
-        await homePage.clickSubmitButton();     
+        await homePage.clickSubmitButton();   
+        await inboxPage.blockEmailListIsVisible();
+        await inboxPage.blockFolderNavigationIsVisible();
     }    
+
 }
 export default new LoginSuccessfullySteps();

@@ -12,8 +12,8 @@ exports.config = {
     //seleniumServerJar: "node_modules/protractor/node_modules/webdriver-manager/selenium/selenium-server-standalone-3.4.0.jar",
     directConnect: true,
 
-    specs: ['specs/*Spec.js'],
-    baseUrl: 'http://qualityshepherd.com',
+    specs: ['specs/loginSuccessfullySpec.js'],
+    baseUrl: 'https://mail.ru',
     framework: 'jasmine',
 
     onPrepare: () => {

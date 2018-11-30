@@ -18,7 +18,7 @@ exports.config = {
 
     onPrepare: () => {
         // set browser size...
-        browser.manage().window().setSize(1024, 800);
+        browser.manage().window().setSize(1903, 1304);
 
         // better jasmine 2 reports...
         const SpecReporter = require('jasmine-spec-reporter');

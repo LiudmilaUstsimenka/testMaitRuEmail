@@ -1,7 +1,7 @@
 browser.ignoreSynchronization = true;
 
 import BasePage from '../pages/basePage';
-import { element } from 'protractor';
+import { element, Key } from 'protractor';
 
 class InboxPage extends BasePage {
     constructor() {
@@ -10,11 +10,16 @@ class InboxPage extends BasePage {
         this.blockFolderNavigation = element(by.xpath('//*[@id="b-nav_folders"]'));
         this.blockEmailList = element(by.xpath('//*[@class="b-datalist__body"]'));
         this.createEmailButton = element(by.xpath('(//*[@data-name="compose"])[1]'));
+        this.searchForm = element(by.xpath('//*[@name="blank"]'));
         //create letter elements
         this.sendEmailButton = element(by.xpath('(//*[@data-name="send"])[1]'));
         this.inputEmail = element(by.css('textarea[data-original-name="To"]'));
-        // this.inputSubject = $('input[name="Subject"]');
-        // this.inputEmailBody = $('tinymce');
+        this.inputSubject = element(by.xpath('//*[@name="Subject"]'));
+        this.submitButton = element(by.xpath('//*[@id="MailRuConfirm"]/div/div[2]/form/div[2]/button[1]'));
+        // tinymce email body
+        this.framework = $('#tinymce');
+        this.inputBody = element(by.tagName('body'));
+
     } 
     
     async blockEmailListIsVisible() {
@@ -49,19 +54,29 @@ class InboxPage extends BasePage {
         return this.inputEmail.sendKeys(email);
     }
 
-    // async enterSubject(subject) {
-    //     await browser.wait(this.isVisible(this.inputSubject), this.timeout.xxl, "inputSubject is not visible");
-    //     return this.inputSubject.sendKeys(subject);
-    // }
-
-    // async enterEmailBody(text) {
-    //     await browser.wait(this.isVisible(this.inputEmailBody), this.timeout.xxl, "inputSubject is not visible");
-    //     return this.inputEmailBody.sendKeys(text);
-    // }
+    async enterSubject(subject) {
+        await browser.wait(this.isVisible(this.inputSubject), this.timeout.xxl, "inputSubject is not visible");
+        return this.inputSubject.sendKeys(subject);
+    }
 
     async clickOnSendEmailButton() {
         await browser.wait(this.isClickable(this.sendEmailButton), this.timeout.xxl, "sendEmailButton is not clickable");
-        return this.sendEmailButton.click;
+        return this.sendEmailButton.click();
+    }
+
+    async clickOnSubmitButton() {
+        await browser.wait(this.isVisible(this.submitButton), this.timeout.xxl, "submitButton is not clickable");
+        return this.submitButton.click();
+    }
+
+    async ctrlABody() {
+        await browser.wait(this.isVisible(this.inputBody), this.timeout.xxl, "inputBody is not visible");
+        return this.inputBody.sendKeys(Key.CONTROL + "a");
+    }
+
+    async enterBody(body) {
+        // await browser.wait(this.isVisible(this.inputBody), this.timeout.xxl, "inputBody is not visible");
+        return this.inputBody.sendKeys(body);
     }
 
    

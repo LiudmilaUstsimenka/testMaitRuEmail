@@ -18,12 +18,12 @@ class SendEmailSteps {
         await inboxPage.sendEmailButtonIsVisible();
         await inboxPage.enterEmail(email);
         await inboxPage.enterSubject(subject);
-        // enter body
-        await browser.driver.switchTo().frame(inboxPage.framework);
-        await inboxPage.ctrlABody();
+        // switch to frame
+        await browser.switchTo().frame(element(by.tagName('iframe')).getWebElement());
         await inboxPage.enterBody(body);
+        //switch back to default content
+        await browser.switchTo().defaultContent();
         await inboxPage.clickOnSendEmailButton();
-        await inboxPage.clickOnSubmitButton();
     }
 }
 export default new SendEmailSteps();

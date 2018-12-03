@@ -17,7 +17,7 @@ class InboxPage extends BasePage {
         this.inputSubject = element(by.xpath('//*[@name="Subject"]'));
         this.submitButton = element(by.xpath('//*[@id="MailRuConfirm"]/div/div[2]/form/div[2]/button[1]'));
         // tinymce email body
-        this.framework = $('#tinymce');
+        this.framework = element(by.xpath("//iframe[contains(@id,'composeEditor_ifr')]"));
         this.inputBody = element(by.tagName('body'));
 
     } 
@@ -69,17 +69,10 @@ class InboxPage extends BasePage {
         return this.submitButton.click();
     }
 
-    async ctrlABody() {
-        await browser.wait(this.isVisible(this.inputBody), this.timeout.xxl, "inputBody is not visible");
-        return this.inputBody.sendKeys(Key.CONTROL + "a");
-    }
-
     async enterBody(body) {
         // await browser.wait(this.isVisible(this.inputBody), this.timeout.xxl, "inputBody is not visible");
         return this.inputBody.sendKeys(body);
-    }
-
-   
+    }   
 
 }
 export default new InboxPage();

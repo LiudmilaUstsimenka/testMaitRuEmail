@@ -13,6 +13,10 @@ describe('send email', () => {
         expect(await browser.getCurrentUrl()).toContain('compose', 'Current url is incorrect');
     });
     it('should send email and show success message', async() => {
-        await sendEmailSteps.sendEmail(email, 'test2', 'body');
+        await sendEmailSteps.sendEmail(email, 'testSendEmail', 'email text');
+        expect(await browser.getCurrentUrl()).toContain('compose', 'Current url is incorrect');
+    });
+    it('should show the recent received email', async() => {
+        
     });
 });

@@ -4,4 +4,5 @@ export default {
     errorMessageInvalidDataLoginForm:'Неверное имя или пароль',
     errorMessageEmptyPasswordLoginForm:'Введите пароль',
     errorMessageEmptyLoginLoginForm:'Введите имя ящика',
+    errorMessageSubmitEmailNoEmailAddredd:'Не указан адрес получателя'
 };

@@ -25,7 +25,7 @@ exports.config = {
     //seleniumServerJar: "node_modules/protractor/node_modules/webdriver-manager/selenium/selenium-server-standalone-3.4.0.jar",
     directConnect: true,
 
-    specs: ['specs/sendEmailSpec.js', 'specs/loginFailedSpec.js', 'specs/loginSuccessfullySpec.js'],
+    specs: ['specs/sendEmailEmptySubject.js'],
     baseUrl: 'https://mail.ru',
     framework: 'jasmine',
 
@@ -68,7 +68,7 @@ exports.config = {
                 '--disable-extensions',
                 'verbose',
                 'log-path=/tmp/chromedriver.log',
-                '--headless'
+                // '--headless'
             ],
             prefs: {
                 // disable chrome's annoying password manager

@@ -19,6 +19,8 @@ class InboxPage extends BasePage {
         this.submitButton = element(by.xpath('//*[@id="MailRuConfirm"]/div/div[2]/form/div[2]/button[1]'));
         // tinymce email body
         this.inputBody = element(by.tagName('body'));
+        //error message element
+        this.alertDialogOk = element(by.cssContainingText('', 'Ok'));
 
     } 
     
@@ -77,6 +79,14 @@ class InboxPage extends BasePage {
     async enterBody(body) {
         return this.inputBody.sendKeys(body);
     }   
+
+    //for error message elements
+
+    async clickAlertDialogOk() {
+        await browser.wait(this.isVisible(this.alertDialogOk), this.timeout.xxl, "alertDialogOk is not visible");
+        return this.alertDialogOk.click();
+    }
+
 
 }
 export default new InboxPage();

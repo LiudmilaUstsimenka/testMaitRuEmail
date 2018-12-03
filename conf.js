@@ -8,7 +8,12 @@ const reporter = new HtmlScreenshotReporter({
     dest: 'report',
     filename: 'my-report.html',
     reportTitle: "Report Title",
-    captureOnlyFailedSpecs: false
+    cleanDestination: true,
+    captureOnlyFailedSpecs: false,
+    pathBuilder: (currentSpec, suites, browserCapabilities) => {
+        // will return chrome/your-spec-name.png
+        return browserCapabilities.get('browserName') + '/' + currentSpec.fullName;
+      }
   });
 
 exports.config = {

@@ -3,6 +3,14 @@ require("babel-register")({
     presets: [ 'es2015' ]
 });
 
+const HtmlScreenshotReporter = require('protractor-jasmine2-screenshot-reporter');
+const reporter = new HtmlScreenshotReporter({
+    dest: 'report',
+    filename: 'my-report.html',
+    reportTitle: "Report Title",
+    captureOnlyFailedSpecs: false
+  });
+
 exports.config = {
     /**
      *  Uncomment ONE of the following to connect to: seleniumServerJar OR directConnect. Protractor
@@ -16,6 +24,14 @@ exports.config = {
     baseUrl: 'https://mail.ru',
     framework: 'jasmine',
 
+    
+    beforeLaunch: () => {
+        // Setup the report before any tests start
+        return new Promise(function(resolve){
+            reporter.beforeLaunch(resolve);
+        });
+    },
+
     onPrepare: () => {
         // set browser size...
         browser.manage().window().setSize(1903, 1304);
@@ -23,6 +39,17 @@ exports.config = {
         // better jasmine 2 reports...
         const SpecReporter = require('jasmine-spec-reporter');
         jasmine.getEnv().addReporter(new SpecReporter({displayStacktrace: 'specs'}));
+
+        // Assign the test reporter to each running instance
+        jasmine.getEnv().addReporter(reporter);     
+
+    },    
+    
+    afterLaunch: function(exitCode) {
+        // Close the report after all tests finish
+        return new Promise(function(resolve){
+            reporter.afterLaunch(resolve.bind(this, exitCode));
+        });
     },
 
     capabilities: {
@@ -53,4 +80,6 @@ exports.config = {
         print: () => {},
         defaultTimeoutInterval: 50000
     }
+
+    
 };

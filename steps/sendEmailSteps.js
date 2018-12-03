@@ -25,5 +25,6 @@ class SendEmailSteps {
         await browser.switchTo().defaultContent();
         await inboxPage.clickOnSendEmailButton();
     }
+
 }
 export default new SendEmailSteps();

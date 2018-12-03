@@ -10,14 +10,14 @@ class InboxPage extends BasePage {
         this.blockFolderNavigation = element(by.xpath('//*[@id="b-nav_folders"]'));
         this.blockEmailList = element(by.xpath('//*[@class="b-datalist__body"]'));
         this.createEmailButton = element(by.xpath('(//*[@data-name="compose"])[1]'));
-        this.searchForm = element(by.xpath('//*[@name="blank"]'));
+        this.inbox = element(by.cssContainingText('span', 'Входящие'));
+        this.recentEmailBody = element(by.xpath('//*[@class="b-datalist__item__subj"]'));
         //create letter elements
         this.sendEmailButton = element(by.xpath('(//*[@data-name="send"])[1]'));
         this.inputEmail = element(by.css('textarea[data-original-name="To"]'));
         this.inputSubject = element(by.xpath('//*[@name="Subject"]'));
         this.submitButton = element(by.xpath('//*[@id="MailRuConfirm"]/div/div[2]/form/div[2]/button[1]'));
         // tinymce email body
-        this.framework = element(by.xpath("//iframe[contains(@id,'composeEditor_ifr')]"));
         this.inputBody = element(by.tagName('body'));
 
     } 
@@ -40,6 +40,11 @@ class InboxPage extends BasePage {
     async clickOnCreateEmailButton() {
         await browser.wait(this.isVisible(this.createEmailButton), this.timeout.xxl, "createEmailButton is not clickable");
         return this.createEmailButton.click();
+    }
+
+    async clickInbox() {
+        await browser.wait(this.isVisible(this.inbox), this.timeout.xxl, "Inbox is not clickable");
+        return this.inbox.click();
     }
 
     //for create letter elements
@@ -70,7 +75,6 @@ class InboxPage extends BasePage {
     }
 
     async enterBody(body) {
-        // await browser.wait(this.isVisible(this.inputBody), this.timeout.xxl, "inputBody is not visible");
         return this.inputBody.sendKeys(body);
     }   
 

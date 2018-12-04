@@ -10,6 +10,10 @@ describe('check emails list', () => {
         await loginSuccessfullySteps.loginWithValidData();
         expect(await browser.getCurrentUrl()).toContain(inboxPage.url, 'Current url is incorrect');
         expect(await inboxPage.emailListIsVisible());
-        await checkEmailVisibilitySteps.checkEmailsAreVisible();
+        for (var i=1; i<=25; i++) {
+            var locator = ('//*[@data-bem="b-datalist__item"]' + '[' + i + ']');
+            console.log(locator);
+        }
+// как-то надо проверить тут эти локаторы          
     });
 });

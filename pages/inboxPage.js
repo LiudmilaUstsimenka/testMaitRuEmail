@@ -11,7 +11,6 @@ class InboxPage extends BasePage {
         this.blockEmailList = element(by.xpath('//*[@class="b-datalist__body"]'));
         this.createEmailButton = element(by.xpath('(//*[@data-name="compose"])[1]'));
         this.inbox = element(by.cssContainingText('span', 'Входящие'));
-        this.emailListVar = element(by.xpath('//*[@data-bem="b-datalist__item"]'));
         this.recentEmailBody = element(by.xpath('//*[@class="b-datalist__item__subj"]'));
         this.emailList = element(by.xpath('//*[@class="b-datalist__body"]'));
         this.emailLocator = element(by.xpath('//*[@data-bem="b-datalist__item"]'));
@@ -55,11 +54,6 @@ class InboxPage extends BasePage {
     async emailListIsVisible() {
         await browser.wait(this.isVisible(this.emailList), this.timeout.xxl, "emailList is not visible");
         return this.emailList.isVisible;
-    }
-
-    async emailListVarIsVisible(locator) {
-        await browser.wait(this.isVisible(locator), this.timeout.xxl, "emailListVar is not visible");
-        return locator.isVisible;
     }
 
     //for create letter elements
